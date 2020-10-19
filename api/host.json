@@ -1,3 +1,7 @@
 {
-    "id": "6b809861cab44e68bfed5d2c2fe7fc0c"
+    "version": "2.0",
+    "extensions" : {
+        "http": {}
+    },
+    "functions": ["HttpTrigger"]
 }
