@@ -4,11 +4,9 @@ open Browser.Dom
 open Fable.Remoting.Client
 open Fable.Core
 
-// Mutable variable to count the number of times we clicked the button
-let mutable count = 0
-
 let api =
   Remoting.createApi()
+  |> Remoting.withRouteBuilder ApiRouting.routeBuilder
   |> Remoting.buildProxy<IApi>
 
 // Get a reference to our button and cast the Element to an HTMLButtonElement

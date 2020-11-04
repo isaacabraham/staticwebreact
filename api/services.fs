@@ -19,6 +19,7 @@ let api : IApi =
 let webApp : HttpHandler =
     Remoting.createApi()
     |> Remoting.fromValue api
+    |> Remoting.withRouteBuilder ApiRouting.routeBuilder
     |> Remoting.buildHttpHandler
 
 [<FunctionName "Run">]
