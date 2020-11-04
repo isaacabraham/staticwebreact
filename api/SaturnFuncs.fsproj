@@ -6,6 +6,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.7" />
     <PackageReference Include="Saturn" Version="0.14.1" />
+    <PackageReference Include="Fable.Remoting.Giraffe" Version="4.12.0" />
   </ItemGroup>
   <ItemGroup>
     <None Include="host.json">
@@ -17,7 +18,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SaturnHost.fs" />
+    <Compile Include="Shared.fs" />
     <Compile Include="services.fs" />
   </ItemGroup>
 </Project>

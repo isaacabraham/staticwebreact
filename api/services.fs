@@ -1,20 +1,25 @@
 module SaturnFuncs.Services
 
 open Giraffe
+open Fable.Remoting.Server
+open Fable.Remoting.Giraffe
 open Saturn
-open System.Threading.Tasks
-open System
-open FSharp.Control.Tasks.V2
 
+open FSharp.Control.Tasks.V2
 open Microsoft.Azure.WebJobs
 open Microsoft.Azure.WebJobs.Extensions.Http
 open Microsoft.AspNetCore.Mvc
 open Microsoft.AspNetCore.Http
+open System.Threading.Tasks
+open System
 
-let webApp = router {
-    get "/api/" (fun next ctx -> text (sprintf "%O: Hello from Saturn and ASP .NET!" DateTime.UtcNow) next ctx)
-    get "/api/gir" (text "GIRAFFE!")
-}
+let api : IApi =
+    { GetServerInfo = fun () -> sprintf "%O: Hello from Saturn and ASP .NET!" DateTime.UtcNow |> async.Return }
+
+let webApp : HttpHandler =
+    Remoting.createApi()
+    |> Remoting.fromValue api
+    |> Remoting.buildHttpHandler
 
 [<FunctionName "Run">]
 let run ([<HttpTrigger (AuthorizationLevel.Anonymous, Route = "{*any}")>] req : HttpRequest) = task {
