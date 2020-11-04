@@ -1,7 +1,11 @@
 {
     "version": "2.0",
-    "extensions" : {
-        "http": {}
-    },
-    "functions": ["HttpTrigger"]
+    "logging": {
+        "applicationInsights": {
+            "samplingExcludedTypes": "Request",
+            "samplingSettings": {
+                "isEnabled": true
+            }
+        }
+    }
 }
