@@ -14,7 +14,11 @@ open System.Threading.Tasks
 open System
 
 let api : IApi =
-    { GetServerInfo = fun () -> sprintf "%O: Hello from Saturn and ASP .NET!" DateTime.UtcNow |> async.Return }
+    { GetServerInfo =
+        fun () ->
+            { MachineName = Environment.MachineName
+              UserName = Environment.UserName
+              Time = DateTime.UtcNow } |> async.Return }
 
 let webApp : HttpHandler =
     Remoting.createApi()

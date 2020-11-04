@@ -13,7 +13,8 @@ let api =
 let myButton = document.querySelector(".my-button") :?> Browser.Types.HTMLButtonElement
 
 let getData() = promise {
-    let! text = api.GetServerInfo() |> Async.StartAsPromise
+    let! response = api.GetServerInfo() |> Async.StartAsPromise
+    let text = sprintf "%O: %s on %s says hello!" response.Time response.UserName response.MachineName
     myButton.innerText <- text
 }
 
