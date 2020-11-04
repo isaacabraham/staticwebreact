@@ -3,6 +3,7 @@ module SaturnFuncs.Services
 open Giraffe
 open Saturn
 open System.Threading.Tasks
+open System
 open FSharp.Control.Tasks.V2
 
 open Microsoft.Azure.WebJobs
@@ -11,7 +12,7 @@ open Microsoft.AspNetCore.Mvc
 open Microsoft.AspNetCore.Http
 
 let webApp = router {
-    get "/api/" (text "Saturn!")
+    get "/api/" (fun next ctx -> text (sprintf "%O: Hello from Saturn and ASP .NET!" DateTime.UtcNow) next ctx)
     get "/api/gir" (text "GIRAFFE!")
 }
 
